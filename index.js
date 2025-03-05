@@ -39,7 +39,6 @@ db.connect();
 
 app.get('/', (req, res) => {
     res.render('index.ejs')
-    res.send('this is working!')
 });
 app.get('/y3/:subject', async (req, res) => {
     let subj = req.params.subject
