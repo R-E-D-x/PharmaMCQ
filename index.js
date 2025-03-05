@@ -7,10 +7,15 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const y3 = { "bioII": { "name": "Bio II" }, "pharmaceuticalMicro": { "name": "Pharmaceutical Micro" }, "phyto": { "name": "Phyto" }, "ceuticsIII": { "name": "Ceutics III" }, "medicinalChemI": { "name": "Medicinal Chem. I" }, "pharmaI": { "name": "Pharma I" }, "para": { "name": "Para" }, "kinetics": { "name": "Kinetics" }, "forensic": { "name": "Forensic" }, "ceuticsIV": { "name": "Ceutics IV" }, "pharmaII": { "name": "Pharma II" }, "medicinalChemII": { "name": "Medicinal Chem. II" } };
-console.log('filename: ' + __filename)
-console.log('dir__dirname: ' + __dirname)
+console.log('filename: ' + __filename);
+console.log('dir__dirname: ' + __dirname);
+app.use(express.static(path.join(__dirname, "public")));
+
+// Set EJS as view engine
+app.set("view engine", "ejs");
 const app = express();
-app.use(express.urlencoded({ extended: true }));
+app.
+    app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 const port = process.env.PORT;
 
@@ -33,7 +38,7 @@ const db = new pg.Client({
 db.connect();
 
 app.get('/', (req, res) => {
-    res.render('index,ejs')
+    res.render('index.ejs')
     res.send('this is working!')
 });
 app.get('/y3/:subject', async (req, res) => {
