@@ -9,11 +9,11 @@ const __dirname = dirname(__filename);
 const y3 = { "bioII": { "name": "Bio II" }, "pharmaceuticalMicro": { "name": "Pharmaceutical Micro" }, "phyto": { "name": "Phyto" }, "ceuticsIII": { "name": "Ceutics III" }, "medicinalChemI": { "name": "Medicinal Chem. I" }, "pharmaI": { "name": "Pharma I" }, "para": { "name": "Para" }, "kinetics": { "name": "Kinetics" }, "forensic": { "name": "Forensic" }, "ceuticsIV": { "name": "Ceutics IV" }, "pharmaII": { "name": "Pharma II" }, "medicinalChemII": { "name": "Medicinal Chem. II" } };
 console.log('filename: ' + __filename);
 console.log('dir__dirname: ' + __dirname);
+const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 
 // Set EJS as view engine
 app.set("view engine", "ejs");
-const app = express();
 app.
     app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
