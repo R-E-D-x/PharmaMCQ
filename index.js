@@ -12,15 +12,22 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 const port = 4000;
-const env = process.env;
-app.use(express.static(__dirname + '/public'));
 
+app.use(express.static(__dirname + '/public'));
+const localObj = {
+    user: process.env.PGUSER,
+    password: process.env.PGPASSWORD,
+    database: process.env.PGDATABASE,
+    host: process.env.PGHOST,
+    port: process.env.PGPORT
+}
 const db = new pg.Client({
-    database: 'pharma',
-    user: env.PGUSER,
-    password: env.PGPASSWORD,
-    host: env.PGHOST,
-    port: env.PGPORT
+    connectionstring: process.env.DATABASE_PUBLIC_URL,
+    // user: process.env.PGUSER,
+    // password: process.env.PGPASSWORD,
+    // database: process.env.PGDATABASE,
+    // host: process.env.PGHOST,
+    // port: process.env.PGPORT
 });
 db.connect();
 
