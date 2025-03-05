@@ -1,0 +1,80 @@
+<%- include('./partials/header.ejs') %>
+    <div class="questions">
+
+
+        <h1>
+            <%= title ||"404, This page doesn't exist"%>
+        </h1>
+
+        <% if (locals.questions.length) { %>
+            <div class="question-rows">
+                <% questions.forEach((element,i)=> { %>
+                    <div class="question-row" value="<%= i %>" id="row<%=i%>">
+                        <%= i+1 %>
+                    </div>
+                    <% }); %>
+            </div>
+
+
+            <% questions.forEach((element,i)=> { %>
+                <div class="question-container question<%= i %>" style=<%=i!==0?"display:none;":"display:block;" %>;">
+                    <h1>Q<span class="question-num">
+                            <%= i+1 %>
+                        </span>:</h1>
+                    <p class="question">
+                        <%= element.question %>
+                    </p>
+
+                    <form action="/" class="form">
+                        <label class="radio-label" id="a<%= i %>"><input type="radio" name="option" value="a">
+                            <%= element.a %>
+                        </label>
+                        <label class="radio-label" id="b<%= i %>"><input type="radio" name="option" value="b">
+                            <%= element.b %>
+                        </label>
+                        <label class="radio-label" id="c<%= i %>"><input type="radio" name="option" value="c">
+                            <%= element.c %>
+                        </label>
+                        <label class="radio-label" id="d<%= i %>"><input type="radio" name="option" value="d">
+                            <%= element.d %>
+                        </label>
+                        <input type="text" name="answer" id="answer" value="<%= element.answer %>" hidden>
+                        <input type="text" name="questionId" id="<%= i %>" value="<%= i %>" hidden>
+                        <button type="submit" class="sub-btn" name='questionID' value="<%= i %>">Submit</button>
+                    </form>
+                    <div class="explaination hidden" id="explaination<%= i %>">
+                        <p style="text-decoration: underline;">explaination:</p>
+                        <p>
+                            <%= element.tip %>
+                        </p>
+                    </div>
+                </div>
+                <% }); %>
+                    <% } else { %>
+                        <h2 style="text-align: center;">No content for this category <br><br> ...yet</h2>
+                        <% } %>
+                            <div class="question-container hidden">
+                                <h1>Q<span class="question-num">1</span>:</h1>
+                                <p class="question"></p>
+
+                                <form action="/">
+                                    <label class="radio-label"><input type="radio" name="option" value="a"> Option
+                                        1</label>
+                                    <label class="radio-label"><input type="radio" name="option" value="b"> Option
+                                        2</label>
+                                    <label class="radio-label"><input type="radio" name="option" value="c"> Option
+                                        3</label>
+                                    <label class="radio-label"><input type="radio" name="option" value="d"> Option
+                                        4</label>
+                                    <input type="text" name="answer" id="answer" value="c" hidden>
+                                    <button type="submit">Submit</button>
+                                </form>
+                                <div>
+                                    <p>explaination:</p>
+                                    <p class="explaination hidden"></p>
+                                </div>
+                            </div>
+
+
+    </div>
+    <%- include('./partials/footer.ejs') %>
