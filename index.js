@@ -3,6 +3,7 @@ import pg from 'pg';
 import 'dotenv/config';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import path from 'path'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
