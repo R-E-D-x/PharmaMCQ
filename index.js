@@ -23,11 +23,11 @@ const localObj = {
 }
 const db = new pg.Client({
     connectionstring: process.env.DATABASE_PUBLIC_URL,
-    // user: process.env.PGUSER,
-    // password: process.env.PGPASSWORD,
-    // database: process.env.PGDATABASE,
-    // host: process.env.PGHOST,
-    // port: process.env.PGPORT
+    user: process.env.PGUSER,
+    password: process.env.PGPASSWORD,
+    database: process.env.PGDATABASE,
+    host: process.env.PGHOST,
+    port: process.env.PGPORT
 });
 db.connect();
 
@@ -113,5 +113,5 @@ app.get('/y3/:subject', async (req, res) => {
 // fn()
 
 app.listen(port, () => {
-    console.log(`${process.env.}listining on http://127.0.0.1:${port}`);
+    console.log(`listining on: ${process.env.URL || ''}:${port}`);
 })
