@@ -7,7 +7,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const y3 = { "bioII": { "name": "Bio II" }, "pharmaceuticalMicro": { "name": "Pharmaceutical Micro" }, "phyto": { "name": "Phyto" }, "ceuticsIII": { "name": "Ceutics III" }, "medicinalChemI": { "name": "Medicinal Chem. I" }, "pharmaI": { "name": "Pharma I" }, "para": { "name": "Para" }, "kinetics": { "name": "Kinetics" }, "forensic": { "name": "Forensic" }, "ceuticsIV": { "name": "Ceutics IV" }, "pharmaII": { "name": "Pharma II" }, "medicinalChemII": { "name": "Medicinal Chem. II" } };
-
+console.log('filename: ' + __filename)
+console.log('dir__dirname: ' + __dirname)
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -32,7 +33,8 @@ const db = new pg.Client({
 db.connect();
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+    res.render('index,ejs')
+    res.send('this is working!')
 });
 app.get('/y3/:subject', async (req, res) => {
     let subj = req.params.subject
