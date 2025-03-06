@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./admin.css">
+    <title>express</title>
+</head>
+
+<body>
+    <nav>
+        <h1 class='main-title'>PharmaMCQ</h1>
+        <div class="admin-nav">
+            <p>Admin</p>
+        </div>
+    </nav>
+    <div class="admin-login-panel">
+        <form action="/admin-auth" class="admin-login-form" method="post">
+            <h1>Log In</h1>
+
+            <label for="email">Email:<br />
+                <input type="email" name="email" id="email" class="form-input">
+            </label>
+            <label for="password">Password:<br />
+                <input type="password" name="password" id="password" class="form-input">
+            </label>
+            <input type="submit" class="admin-submit">
+        </form>
+    </div>
+    <footer>
+        © Copyright reserved - Some fella
+    </footer>
+    <script src="./script.js"></script>
+    <script src="./admin.js"></script>
+</body>
+
+</html>
