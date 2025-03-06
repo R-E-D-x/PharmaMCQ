@@ -19,17 +19,20 @@ form {
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
-    border-radius: 0 40px 0 40px;
+    border-radius: 5px 40px;
     background-color: #f3f3f350;
     width: 70%;
-    height: 400px;
+    height: auto;
 }
 
-.form-input {
+input[type=text],
+select,
+textarea {
     border: none;
     height: 30px;
+    background-color: #C7D9DD;
     width: 190px;
-    border-radius: 0 15px 15px 15px;
+    border-radius: 6 15px 15px 15px;
     outline: 1px solid gray;
     box-shadow: 1px 5px 13px gray;
     box-sizing: border-box;
@@ -53,6 +56,7 @@ form {
     justify-content: flex-start;
     padding: 2rem 1rem;
     margin-top: 3rem;
+    box-shadow: 0px 0px 7px black;
 }
 
 .selection {
@@ -69,6 +73,119 @@ form {
     border-radius: 0;
 }
 
+#year-selection {
+    width: 60px;
+    text-align: center;
+}
+
 option {
     font-size: 1.3rem;
+}
+
+.question-label {
+    width: 100%;
+}
+
+.question {
+    width: 80%;
+    border-radius: 5px;
+    padding: 5px 15px;
+    height: 100px;
+    overflow-y: auto;
+    resize: none;
+}
+
+input[type=radio] {
+    display: none;
+
+}
+
+label {
+    font-size: 1.3rem;
+}
+
+.label-radio {
+    display: inline;
+    background-color: #3b3b3b;
+    user-select: none;
+    color: white;
+
+    padding: 8px 25px;
+    margin: 0px 0px;
+}
+
+.radio-flex {
+    width: 100%;
+}
+
+.choice {
+    border-radius: 0px 10px 10px;
+}
+
+.radio-group {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 1px;
+    justify-content: center;
+}
+
+#radioA:checked+label[for=radioA] {
+    background-color: #BCCCDC;
+    color: black;
+}
+
+#radioB:checked+label[for=radioB] {
+    background-color: #BCCCDC;
+    color: black;
+}
+
+#radioC:checked+label[for=radioC] {
+    background-color: #BCCCDC;
+    color: black;
+}
+
+#radioD:checked+label[for=radioD] {
+    background-color: #BCCCDC;
+    color: black;
+}
+
+.tip-label {
+    width: 100%;
+}
+
+.tip {
+    width: 80%;
+    border-radius: 5px;
+    padding: 5px 15px;
+    height: 100px;
+    overflow-y: auto;
+    resize: none;
+}
+
+.submit-question {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+
+}
+
+.circle {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    /* border: 1px dotted white; */
+    border-bottom: 3px solid white;
+    animation: rotation 1s linear infinite forwards;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotateZ(0deg);
+    }
+
+    to {
+        transform: rotateZ(360deg);
+    }
 }

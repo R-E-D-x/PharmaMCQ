@@ -185,6 +185,13 @@ button[type='submit']:hover {
     background-color: #009900;
 }
 
+.quick-message {
+    opacity: 0;
+}
+
+#year-selection:hover~.quick-message {
+    opacity: 1;
+}
 
 /* Hide default radio button */
 

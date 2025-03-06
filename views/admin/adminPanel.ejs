@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/admin.css">
+    <title>express</title>
+</head>
+
+<body>
+    <nav>
+        <h1 class='main-title'>PharmaMCQ</h1>
+        <div class="admin-nav">
+            <p>Admin</p>
+        </div>
+    </nav>
+    <div class="admin-login-panel">
+        <form action="/add-question" class="question-panel" method="post">
+            <h1>Add a question</h1>
+            <label for="year">Year: <br />
+                <select name="year" class="selection" id="year-selection">
+                    <option value="3" required>3</option>
+                </select> <span class="quick-message">* More soon</span>
+            </label>
+            <label for="category">Subject:<br />
+                <select name="category" class="selection" id="subject-selection">
+                    <option class="subject-item" value="bioII">Bio II</option>
+                    <option class="subject-item" value="pharmaceuticalMicro">Pharmaceutical Micro</option>
+                    <option class="subject-item" value="phyto">Phyto</option>
+                    <option class="subject-item" value="ceuticsIII">Ceutics III</option>
+                    <option class="subject-item" value="medicinalChemI">Medicinal Chem. I</option>
+                    <option class="subject-item" value="pharmaI">Pharma I</option>
+                    <option class="subject-item" value="para">Para</option>
+                    <option class="subject-item" value="kinetics">Kinetics</option>
+                    <option class="subject-item" value="forensic">Forensic</option>
+                    <option class="subject-item" value="ceuticsIV">Ceutics IV</option>
+                    <option class="subject-item" value="pharmaII">Pharma II</option>
+                    <option class="subject-item" value="medicinalChemII">Medicinal Chem. II</option>
+                </select>
+            </label>
+            <label for="question" class="question-label">Question:<br />
+                <textarea type="text" name="question" rows="5" id="question" class="question" required></textarea>
+            </label>
+            <label for="a">Choice A: <br />
+                <input type="text" name="a" class="choice" id="choice-a" required>
+                <img src="./svgs/check-circle.svg" class="check-icon" id="icon-a" alt="check-circle">
+            </label>
+            <label for="b">Choice B: <br />
+                <input type="text" name="b" class="choice" id="choice-b" required>
+                <img src="./svgs/check-circle.svg" class="check-icon" id="icon-b" alt="check-circle">
+            </label>
+            <label for="c">Choice C: <br />
+                <input type="text" name="c" class="choice" id="choice-c" required>
+                <img src="./svgs/check-circle.svg" class="check-icon" id="icon-c" alt="check-circle">
+            </label>
+            <label for="d">Choice D: <br />
+                <input type="text" name="d" class="choice" id="choice-d" required>
+                <img src="./svgs/check-circle.svg" class="check-icon" id="icon-d" alt="check-circle">
+            </label>
+            <div class="radio-flex">
+                <p style="text-align: center; padding-bottom: 1rem;">Correct answer :</p>
+                <div class="radio-group">
+                    <input type="radio" class="radio" name="answer" value="a" id="radioA" required>
+                    <label for="radioA" class="label-radio labelA">A</label>
+
+
+                    <input type="radio" class="radio" name="answer" value='b' id="radioB" required>
+                    <label for="radioB" class="label-radio labelB">B</label>
+
+                    <input type="radio" class="radio" name="answer" value='c' id="radioC" required>
+                    <label for="radioC" class="label-radio labelC">C</label>
+
+                    <input type="radio" class="radio" name="answer" value='d' id="radioD" required>
+                    <label for="radioD" class="label-radio labelD">D</label>
+                </div>
+
+            </div>
+            <label for="tip" class="tip-label">Explaination:<br />
+                <textarea type="text" name="tip" rows="5" id="tip" class="tip"></textarea>
+            </label>
+            <button type="submit" value="Submit" class="submit-question">
+                Submit
+            </button>
+        </form>
+    </div>
+    <footer>
+        <!-- © Copyright reserved - Some fella -->
+    </footer>
+    <script src="/script.js"></script>
+    <script src="/admin.js"></script>
+</body>
+
+</html>
