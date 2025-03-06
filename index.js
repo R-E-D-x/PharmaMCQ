@@ -28,7 +28,7 @@ const localObj = {
     port: process.env.PGPORT
 }
 const db = new pg.Client({
-    // connectionstring: process.env.DATABASE_PUBLIC_URL,
+    connectionstring: process.env.DATABASE_PUBLIC_URL,
     user: process.env.PGUSER,
     password: process.env.PGPASSWORD,
     database: process.env.PGDATABASE,
