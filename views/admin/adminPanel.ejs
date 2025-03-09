@@ -13,7 +13,9 @@
     <nav>
         <h1 class='main-title'>PharmaMCQ</h1>
         <div class="admin-nav">
-            <p>Admin</p>
+            <p>
+                <%= username %>
+            </p>
         </div>
     </nav>
     <div class="admin-login-panel">
@@ -45,19 +47,19 @@
             </label>
             <label for="a">Choice A: <br />
                 <input type="text" name="a" class="choice" id="choice-a" required>
-                <img src="./svgs/check-circle.svg" class="check-icon" id="icon-a" alt="check-circle">
+                <img src="/svgs/check-circle.svg" class="check-icon" id="icon-a" alt="check-circle">
             </label>
             <label for="b">Choice B: <br />
                 <input type="text" name="b" class="choice" id="choice-b" required>
-                <img src="./svgs/check-circle.svg" class="check-icon" id="icon-b" alt="check-circle">
+                <img src="/svgs/check-circle.svg" class="check-icon" id="icon-b" alt="check-circle">
             </label>
             <label for="c">Choice C: <br />
                 <input type="text" name="c" class="choice" id="choice-c" required>
-                <img src="./svgs/check-circle.svg" class="check-icon" id="icon-c" alt="check-circle">
+                <img src="/svgs/check-circle.svg" class="check-icon" id="icon-c" alt="check-circle">
             </label>
             <label for="d">Choice D: <br />
                 <input type="text" name="d" class="choice" id="choice-d" required>
-                <img src="./svgs/check-circle.svg" class="check-icon" id="icon-d" alt="check-circle">
+                <img src="/svgs/check-circle.svg" class="check-icon" id="icon-d" alt="check-circle">
             </label>
             <div class="radio-flex">
                 <p style="text-align: center; padding-bottom: 1rem;">Correct answer :</p>
@@ -80,6 +82,7 @@
             <label for="tip" class="tip-label">Explaination:<br />
                 <textarea type="text" name="tip" rows="5" id="tip" class="tip"></textarea>
             </label>
+            <input type="text" name="author" value="<%= username %>" hidden>
             <button type="submit" value="Submit" class="submit-question">
                 Submit
             </button>

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/admin.css">
+    <link rel="stylesheet" href="/login.css">
     <title>express</title>
 </head>
 
@@ -13,28 +14,33 @@
     <nav>
         <h1 class='main-title'>PharmaMCQ</h1>
         <div class="admin-nav">
-            <p>Admin</p>
+            <p class="subject">
+                <%= subject %>
+            </p>
         </div>
     </nav>
     <div class="admin-login-panel">
-        <form action="/verify-admin" class="admin-login-form" method="post">
+        <form action="/verify-user" class="user-login-form" method="post">
             <h1>Log In</h1>
-
+            <p class="message">
+                <%= message %>
+            </p>
             <label for="user">User:<br />
                 <input type="text" name="username" id="user" class="form-input">
             </label>
             <label for="password">Password:<br />
                 <input type="password" name="password" id="password" class="form-input">
             </label>
-            <input type="submit" class="admin-submit">
+            <input type="text" name="subject" value="<%= subject %>" hidden>
+            <input type="submit" class="user-login-submit">
+            <br>
 
         </form>
     </div>
     <footer>
         © Copyright reserved - Some fella
     </footer>
-    <script src="/script.js"></script>
-    <script src="/admin.js"></script>
+    <script src="/userLogin.js"></script>
 </body>
 
 </html>

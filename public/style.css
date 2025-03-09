@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #b3b3b3;
+    background: linear-gradient(to right bottom, #b3b3b3, white);
     /* min-height: 100vh; */
     margin-bottom: 50px;
     overflow-x: hidden;
@@ -30,7 +30,7 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70vh;
+    height: 100vh;
 }
 
 .branch {
@@ -139,6 +139,7 @@ footer {
     background-color: #a4a4a4;
     width: 400px;
     user-select: none;
+    border-radius: 30px;
     /* min-height: 800px; */
     padding: 50px 30px;
 }
@@ -170,7 +171,9 @@ footer {
     padding: 15px 7px;
 }
 
-button[type='submit'] {
+
+
+.sub-btn {
     background-color: green;
     border: none;
     width: 100px;
@@ -178,12 +181,30 @@ button[type='submit'] {
     border-radius: 5px;
     color: white;
     margin: 15px 0px;
-
+    font-size: 1.2rem;
 }
 
-button[type='submit']:hover {
+.sub-btn:hover {
     background-color: #009900;
 }
+
+.logout-btn {
+    background-color: #ff0000;
+    padding: 10px 20px;
+    color: #f0f0f0;
+    border-radius: 5px;
+    border: none;
+    margin-right: auto;
+}
+
+.logout-form {
+    margin-left: auto;
+}
+
+.logout-btn:hover {
+    background-color: #aa0000;
+}
+
 
 .quick-message {
     opacity: 0;

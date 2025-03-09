@@ -4,10 +4,17 @@ import 'dotenv/config';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import session from 'express-session';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+app.use(session({
+    secret: "secret-key", // Used to sign session ID cookie
+    resave: false, // Prevents saving unchanged sessions
+    saveUninitialized: false, // Doesn't save empty sessions
+    cookie: { secure: false, maxAge: 3 * 24 * 60 * 60 * 1000 } // Set to true in production with HTTPS
+}));
 
 app.use(express.static(path.join(__dirname, "public")));
 const y3 = { "bioII": { "name": "Bio II" }, "pharmaceuticalMicro": { "name": "Pharmaceutical Micro" }, "phyto": { "name": "Phyto" }, "ceuticsIII": { "name": "Ceutics III" }, "medicinalChemI": { "name": "Medicinal Chem. I" }, "pharmaI": { "name": "Pharma I" }, "para": { "name": "Para" }, "kinetics": { "name": "Kinetics" }, "forensic": { "name": "Forensic" }, "ceuticsIV": { "name": "Ceutics IV" }, "pharmaII": { "name": "Pharma II" }, "medicinalChemII": { "name": "Medicinal Chem. II" } };
@@ -41,41 +48,91 @@ app.get('/', (req, res) => {
     res.render('index.ejs')
 });
 app.get('/y3/:subject', async (req, res) => {
-    let subj = req.params.subject
+    let subj = req.params.subject;
     let result = await db.query('SELECT * FROM questions WHERE category = $1', [subj]);
-    let rows = result.rows
-    res.render('y3.ejs', {
-        title: y3[subj].name,
-        questions: rows
-    });
+    let session = req.session.user
+    console.log(session)
+    if (session) {
+        return res.redirect(`../${session.username}/y3/${subj}`)
+    }
+    let questions = result.rows
+    res.render('userLogin.ejs', {
+        subject: subj,
+        message: ''
+    })
+});
+app.get('/:user/y3/:subject', async (req, res) => {
+    let { user, subject } = req.params;
+    let session = req.session.user;
+    console.log(session);
+    if (!req.session.user) return res.send('<h1 style="text-align:center;"> you are being redirected...</h1> <script>setTimeout(()=> window.history.back() ,3000)</script>');
+    const questions = (await db.query('SELECT * FROM questions WHERE category = $1', [subject])).rows
+
+    res.render('y3.ejs', { user: session.user, title: subject, questions: questions })
+
+});
+app.post('/verify-admin', async (req, res) => {
+    const { username, password } = req.body
+    const rows = (await db.query('SELECT * FROM admins WHERE username = $1', [username])).rows
+    if (!rows.length) {
+        res.render('adminLogin', {
+            message: 'Username not found.'
+        });
+    } else if (rows[0].password === password) {
+        req.session.admin = { type: 'admin', ...rows[0] };
+        res.redirect(`/${username}/admin-panel`)
+    } else {
+        res.render('adminLogin', {
+            message: 'Wrong Password'
+        });
+    }
+})
+app.post('/verify-user', async (req, res) => {
+    const { username, password, subject } = req.body;
+    console.log(username, password, subject)
+    const rows = (await db.query('SELECT * FROM users WHERE username = $1', [username])).rows
+    if (!rows.length) {
+        res.render('userLogin', {
+            subject: subject,
+            message: 'User not found.'
+        });
+    } else if (rows[0].password === password) {
+        req.session.user = { type: 'user', ...req.body };
+        res.redirect(`${username}/y3/${subject}`)
+    } else {
+        res.render('userLogin', {
+            subject: subject,
+            message: 'Wrong Password'
+        });
+    }
 });
 app.get('/admin', async (req, res) => {
-    res.render('admin/adminLogin.ejs', {
-        message: 'Admins only'
-    });
-});
-app.get('/new-question', (req, res) => {
-    res.render('admin/adminPanel.ejs');
+    if (!req.session.admin) return res.render('admin/adminLogin')
+    res.redirect(`/${req.session.admin.username}/admin-panel`)
+})
+app.get('/:user/admin-panel', async (req, res) => {
+    if (!req.session.admin) return res.redirect('/admin')
+    const admin = req.session.admin
+    res.render('admin/adminPanel.ejs', { username: admin.first_name });
 });
 app.post('/add-question', async (req, res) => {
-    const body = req.body
+    const { category, question, a, b, c, d, answer, tip, year, author } = req.body
 
-    let result = await db.query('INSERT INTO questions (category, question, a, b, c, d,answer,tip,year) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *'
-        , [body.category, body.question, body.a, body.b, body.c, body.d, body.answer, body.tip, Number(body.year)])
+    let result = await db.query('INSERT INTO questions (category, question, a, b, c, d,answer,tip,year,author) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *'
+        , [category, question, a, b, c, d, answer, tip, Number(year), author])
     if (result.rowCount) {
-        res.send(`
-        <h1>DONE</h1>
-        YOU WILL BE REDIRECTED IN 3 SECS
-    <script>
-    setTimeout(()=> window.history.back() ,3000)
-        
-    </script>
-`);
+        res.sendFile(__dirname + '/public/success.html');
 
     } else {
         res.send('error')
     }
 });
+app.post("/logout", (req, res) => {
+    req.session.destroy(err => {
+        if (err) return res.send("Error destroying session");
+        res.redirect('/');
+    });
+});
 app.listen(port, () => {
-    console.log(`listining on: ${process.env.URL || ''}:${port}`);
+    console.log(`listining on: ${process.env.URL}:${port}`);
 });

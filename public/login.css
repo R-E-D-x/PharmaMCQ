@@ -1,0 +1,32 @@
+form {
+    box-shadow: 1px 5px 13px gray;
+    border-radius: 30px;
+    padding: 50px 60px;
+}
+
+.form-input {
+    height: 30px;
+    border-radius: 10px;
+    /* width: 190px; */
+    background-color: #c7d9dd;
+    border: 1px solid gray;
+    padding: 0 1rem;
+    box-shadow: 1px 5px 13px gray;
+}
+
+.user-login-submit {
+    background-color: #c7d9dd;
+    border: 1px solid gray;
+    border-radius: 5px;
+    font-size: 1.3rem;
+    padding: 5px 15px;
+}
+
+.form-input:focus {
+    outline: none;
+    border: 1px solid gray;
+}
+
+.user-login-submit:hover {
+    background-color: #b6c8cc;
+}
