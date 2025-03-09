@@ -27,13 +27,7 @@ app.use(express.json());
 const port = process.env.PORT;
 
 app.use(express.static(__dirname + '/public'));
-const localObj = {
-    user: process.env.PGUSER,
-    password: process.env.PGPASSWORD,
-    database: process.env.PGDATABASE,
-    host: process.env.PGHOST,
-    port: process.env.PGPORT
-}
+
 const db = new pg.Client({
     connectionstring: process.env.DATABASE_PUBLIC_URL,
     user: process.env.PGUSER,
@@ -134,5 +128,5 @@ app.post("/logout", (req, res) => {
     });
 });
 app.listen(port, () => {
-    console.log(`listining on: ${process.env.URL}:${port}`);
+    console.log(`listining on: ${process.env.URL}`);
 });

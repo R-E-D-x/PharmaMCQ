@@ -16,14 +16,25 @@
         background-color: #9f9f9f;
     }
 
+    @keyframes initiation {
+        from {
+            transform: rotateZ(0deg);
+        }
+
+        to {
+            transform: rotateZ(2160deg);
+        }
+    }
+
     img {
         height: 200px;
         width: 200px;
+        animation: initiation 0.5s linear forwards;
     }
 
     h1 {
-        border: 1px solid black;
-        border-radius: -50px;
+        font-size: 4rem;
+        font-family: sans-serif;
     }
 </style>
 
