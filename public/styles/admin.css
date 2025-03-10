@@ -1,6 +1,6 @@
 body {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
     min-height: 70vh;
@@ -55,7 +55,7 @@ textarea {
     align-items: start;
     justify-content: flex-start;
     padding: 2rem 1rem;
-    margin-top: 3rem;
+    /* margin-top: 3rem; */
     box-shadow: 0px 0px 7px black;
 }
 
@@ -117,9 +117,10 @@ label {
 }
 
 form {
-    box-shadow: 1px 5px 13px gray;
+    box-shadow: 1px 10px 13px gray;
     border-radius: 30px;
     padding: 50px 60px;
+    transition: all 1s;
 }
 
 .form-input {
@@ -233,4 +234,29 @@ form {
     to {
         transform: rotateZ(360deg);
     }
+}
+
+.switch-btns {
+    display: flex;
+    justify-content: center;
+}
+
+.switch-btns button {
+    width: fit-content;
+    padding: 3px 10px;
+    height: 30px;
+    background-color: #dddddd;
+    font-size: 1.7rem;
+    border: 1px solid gray;
+    border-bottom: none;
+    margin: 0;
+}
+
+.selected-btn {
+    background-color: #fff !important;
+    z-index: 100;
+}
+
+.hidden {
+    display: none;
 }

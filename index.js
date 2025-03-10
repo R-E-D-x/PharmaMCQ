@@ -100,6 +100,17 @@ app.post('/verify-user', async (req, res) => {
         });
     }
 });
+app.post('/add-user', async (req, res) => {
+    const { year, first_name, last_name, username, password, author } = req.body
+    let result = await db.query(`SELECT * FROM users WHERE username = $1`, [username])
+    if (result.rowCount) return res.send('user already Exists')
+    let rowCount = await db.query(`
+    INSERT INTO users (year,first_name,last_name,username,password,author)
+    VALUES ($1,$2,$3,$4,$5,$6) RETURNING *
+    `, [year, first_name, last_name, username, password, author]);
+    if (rowCount) return res.sendFile(__dirname + '/public/success.html')
+    res.send('Error')
+})
 app.get('/admin', async (req, res) => {
     if (!req.session.admin) return res.render('admin/adminLogin')
     res.redirect(`/${req.session.admin.username}/admin-panel`)
@@ -112,8 +123,10 @@ app.get('/:user/admin-panel', async (req, res) => {
 app.post('/add-question', async (req, res) => {
     const { category, question, a, b, c, d, answer, tip, year, author } = req.body
 
-    let result = await db.query('INSERT INTO questions (category, question, a, b, c, d,answer,tip,year,author) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *'
-        , [category, question, a, b, c, d, answer, tip, Number(year), author])
+    let result = await db.query(`
+    INSERT INTO questions (category, question, a, b, c, d, answer, tip, year, author)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *
+    `, [category, question, a, b, c, d, answer, tip, Number(year), author])
     if (result.rowCount) {
         res.sendFile(__dirname + '/public/success.html');
 
