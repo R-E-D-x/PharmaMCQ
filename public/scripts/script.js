@@ -1,5 +1,6 @@
-const mainTitle = document.querySelector('.main-title');
 const dropItemsY3 = document.querySelectorAll('.y3');
+const mainTitle = document.querySelector('.main-title');
+const sidebarBtn = document.querySelector('.nav-m-btn');
 // let obj = {};
 // let arr = []
 mainTitle.addEventListener('click', () => {
@@ -18,5 +19,13 @@ dropItemsY3.forEach((item) => {
     // obj = { ...obj, [endpoint]: { name: text } }
     // arr.push(endpoint)
 });
-// console.log(obj, arr)
+document.addEventListener("click", (event) => {
+    if (!event.target.closest(".branch-container") && !event.target.closest('.nav-m-btn')) {
+        document.querySelector('.branch-container').classList.add('shrink');
+    }
+});
 
+sidebarBtn.addEventListener('click', () => {
+
+    document.querySelector('.branch-container').classList.remove('shrink');
+})

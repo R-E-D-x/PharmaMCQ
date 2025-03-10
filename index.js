@@ -39,7 +39,7 @@ const db = new pg.Client({
 db.connect();
 
 app.get('/', (req, res) => {
-    res.render('index.ejs')
+    res.sendFile('index.html');
 });
 app.get('/y3/:subject', async (req, res) => {
     let subj = req.params.subject;
@@ -128,11 +128,10 @@ app.post('/add-question', async (req, res) => {
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *
     `, [category, question, a, b, c, d, answer, tip, Number(year), author])
     if (result.rowCount) {
-        res.sendFile(__dirname + '/public/success.html');
-
-    } else {
-        res.send('error')
+        return res.sendFile(__dirname + '/public/success.html');
     }
+    res.send('error')
+
 });
 app.post("/logout", (req, res) => {
     req.session.destroy(err => {

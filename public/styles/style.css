@@ -2,12 +2,20 @@
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    transition: all 0.3s;
+    -webkit-tap-highlight-color: transparent;
+    /* Remove the blue highlight */
+    touch-action: manipulation;
+}
+
+html {
+    background: linear-gradient(to right bottom, #b3b3b3, white);
 }
 
 body {
-    background: linear-gradient(to right bottom, #b3b3b3, white);
-    /* min-height: 100vh; */
-    margin-bottom: 50px;
+
+    min-height: 100vh;
+    /* margin-bottom: 50px; */
     overflow-x: hidden;
 }
 
@@ -15,6 +23,7 @@ body {
 nav {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     box-sizing: border-box;
     padding: 15px 15px;
 }
@@ -30,7 +39,13 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 85vh;
+}
+
+.branch-container {
+    display: flex;
+    justify-self: end;
+    user-select: none;
 }
 
 .branch {
@@ -40,6 +55,7 @@ nav {
     border-radius: 5px;
     position: relative;
     user-select: none;
+
 }
 
 .branch:hover {
@@ -50,25 +66,38 @@ nav {
     display: none;
     z-index: 10;
     background-color: #3b3b3b;
-    padding: 3px 15px;
-    width: max-content;
-    left: 0;
-    border-radius: 0px 15px 15px 15px;
+    font-size: 1.7rem;
+    padding: 3px 25px;
+    width: 300px;
+    right: 0;
+    top: 30px;
+    border-radius: 15px 0 15px 15px;
 }
 
-.branch:hover .branch-drop {
-    display: block;
-    position: absolute;
+.nav-m-btn {
+    display: none;
+}
+
+@media (min-width: 650px) {
+    .branch:hover .branch-drop {
+        display: block;
+        position: absolute;
+    }
 }
 
 .drop-item {
     padding: 4px 2px;
     color: #b3b3b3;
+    position: relative;
+    left: 0;
+    transition: all 0.3s;
 }
 
 .drop-item:hover {
-    border-left: 1px solid black;
+    /* border-left: 1px solid black; */
+    color: #ac4242;
     scale: 1.1;
+    left: 25px;
 }
 
 .landing {
@@ -113,7 +142,6 @@ footer {
     white-space: nowrap;
     scrollbar-color: #000000 #930f0f00;
     border-radius: 3px;
-
     /* gap: 10px; */
 }
 
@@ -215,12 +243,73 @@ footer {
 }
 
 /* Hide default radio button */
+.nav-m-btn {
+    display: none;
+    width: 60px;
+    background-color: transparent;
+    border: 1px solid #000;
+}
 
-@media (max-width: 555px) {
+.nav-m-btn:hover {
+    background-color: #3b3b3b;
+}
+
+@media (max-width: 650px) {
+    .nav-m-btn {
+        display: block;
+    }
+
     .branch-drop {
-        left: auto;
+        display: block;
+        position: static;
         right: 0;
+        top: 0;
         border-radius: 15px 0px 15px 15px;
+        height: 0px;
+        overflow: hidden;
+        box-sizing: border-box;
+        padding: 0 15px;
+        width: 350px;
+        transition: all 1s;
+    }
+
+    .branch:hover .branch-drop {
+        background-color: transparent;
+        height: 100%;
+        -webkit-tap-highlight-color: transparent;
+        /* Remove the blue highlight */
+    }
+
+    .branch {
+        background-color: #3b3b3b;
+        border-radius: 0;
+
+        color: #b3b3b3;
+        font-size: 1.7rem;
+    }
+
+
+    .branch-container {
+        background-color: #3b3b3b;
+        flex-direction: column;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 350px;
+        height: 100vh;
+        z-index: 10;
+        padding-top: 1rem;
+        box-sizing: border-box;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .chev-down {
+        filter: invert(1);
+    }
+
+    .shrink {
+        width: 0px;
     }
 }
 
