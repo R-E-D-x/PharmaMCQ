@@ -12,44 +12,48 @@
 <body>
     <nav>
         <h1 class='main-title'>PharmaMCQ</h1>
-        <div class="branch">
-            <p class="branch-title">Year 1 <img src="/svgs/chevron-down.svg" alt="cheveron down"></p>
-            <div class="branch-drop">
-                <p style="color: #b3b3b3;">empty for now.</p>
+        <div class="branch-container shrink">
+            <div class="branch">
+                <p class="branch-title">Year 1 <img src="/svgs/chevron-down.svg" class="chev-down" alt="cheveron down">
+                </p>
+                <div class="branch-drop">
+                    <p style="color: #b3b3b3;">empty for now.</p>
+                </div>
             </div>
-        </div>
-        <div class="branch">
-            <p class="branch-title">Year 2 <img src="/svgs/chevron-down.svg" alt="cheveron down"></p>
-            <div class="branch-drop">
-                <p style="color: #b3b3b3;">empty for now.</p>
+            <div class="branch">
+                <p class="branch-title">Year 2 <img src="/svgs/chevron-down.svg" class="chev-down" alt="cheveron down">
+                </p>
+                <div class="branch-drop">
+                    <p style="color: #b3b3b3;">empty for now.</p>
+                </div>
             </div>
-        </div>
-        <div class="branch">
-            <p class="branch-title">Year 3 <img src="/svgs/chevron-down.svg" alt="cheveron down"></p>
-            <div class="branch-drop">
-                <p class="drop-item y3" href="bioII">Bio II</p>
-                <p class="drop-item y3" href="pharmaceuticalMicro">Pharmaceutical Micro</p>
-                <p class="drop-item y3" href="phyto">Phyto</p>
-                <p class="drop-item y3" href="ceuticsIII">Ceutics III</p>
-                <p class="drop-item y3" href="medicinalChemI">Medicinal Chem. I</p>
-                <p class="drop-item y3" href="pharmaI">Pharma I</p>
-                <p class="drop-item y3" href="para">Para</p>
-                <p class="drop-item y3" href="kinetics">Kinetics</p>
-                <p class="drop-item y3" href="forensic">Forensic</p>
-                <p class="drop-item y3" href="ceuticsIV">Ceutics IV</p>
-                <p class="drop-item y3" href="pharmaII">Pharma II</p>
-                <p class="drop-item y3" href="medicinalChemII">Medicinal Chem. II</p>
+            <div class="branch">
+                <p class="branch-title">Year 3 <img src="/svgs/chevron-down.svg" alt="cheveron down"></p>
+                <div class="branch-drop">
+                    <p class="drop-item y3" href="bioII">Bio II</p>
+                    <p class="drop-item y3" href="pharmaceuticalMicro">Pharmaceutical Micro</p>
+                    <p class="drop-item y3" href="phyto">Phyto</p>
+                    <p class="drop-item y3" href="ceuticsIII">Ceutics III</p>
+                    <p class="drop-item y3" href="medicinalChemI">Medicinal Chem. I</p>
+                    <p class="drop-item y3" href="pharmaI">Pharma I</p>
+                    <p class="drop-item y3" href="para">Para</p>
+                    <p class="drop-item y3" href="kinetics">Kinetics</p>
+                    <p class="drop-item y3" href="forensic">Forensic</p>
+                    <p class="drop-item y3" href="ceuticsIV">Ceutics IV</p>
+                    <p class="drop-item y3" href="pharmaII">Pharma II</p>
+                    <p class="drop-item y3" href="medicinalChemII">Medicinal Chem. II</p>
+                </div>
             </div>
+
         </div>
         <form action="/logout" class="logout-form" method="post">
             <button type="submit" class="logout-btn">Logout</button>
         </form>
+        <button class="nav-m-btn" style="margin-left: 1rem;"><img src="/svgs/list.svg" alt="list"></button>
     </nav>
     <div class="questions">
-
-
         <h1>
-            <%= title ||"404, This page doesn't exist"%>
+            <%= title %>
         </h1>
 
         <% if (locals.questions.length) { %>
@@ -61,66 +65,76 @@
                     <% }); %>
             </div>
 
+            <div class="question-slide">
 
-            <% questions.forEach((element,i)=> { %>
-                <div class="question-container question<%= i %>" style=<%=i!==0?"display:none;":"display:block;" %>;">
-                    <h1>Q<span class="question-num">
-                            <%= i+1 %>
-                        </span>:</h1>
-                    <p class="question">
-                        <%= element.question %>
-                    </p>
-
-                    <form action="/" class="form">
-                        <label class="radio-label" id="a<%= i %>"><input type="radio" name="option" value="a">
-                            <%= element.a %>
-                        </label>
-                        <label class="radio-label" id="b<%= i %>"><input type="radio" name="option" value="b">
-                            <%= element.b %>
-                        </label>
-                        <label class="radio-label" id="c<%= i %>"><input type="radio" name="option" value="c">
-                            <%= element.c %>
-                        </label>
-                        <label class="radio-label" id="d<%= i %>"><input type="radio" name="option" value="d">
-                            <%= element.d %>
-                        </label>
-                        <input type="text" name="answer" id="answer" value="<%= element.answer %>" hidden>
-                        <input type="text" name="questionId" id="<%= i %>" value="<%= i %>" hidden>
-                        <button type="submit" class="sub-btn" name='questionID' value="<%= i %>">Submit</button>
-                    </form>
-                    <div class="explaination hidden" id="explaination<%= i %>">
-                        <p style="text-decoration: underline;">explaination:</p>
-                        <p>
-                            <%= element.tip %>
+                <% questions.forEach((element,i)=> { %>
+                    <div class="question-container slide question<%= i %>" ;">
+                        <h1>Q<span class="question-num">
+                                <%= i+1 %>
+                            </span>:</h1>
+                        <p class="question">
+                            <%= element.question %>
                         </p>
+
+                        <form action="/" class="form">
+                            <label class="radio-label" id="a<%= i %>"><input type="radio" name="option" value="a">
+                                <%= element.a %>
+                            </label>
+                            <label class="radio-label" id="b<%= i %>"><input type="radio" name="option" value="b">
+                                <%= element.b %>
+                            </label>
+                            <label class="radio-label" id="c<%= i %>"><input type="radio" name="option" value="c">
+                                <%= element.c %>
+                            </label>
+                            <label class="radio-label" id="d<%= i %>"><input type="radio" name="option" value="d">
+                                <%= element.d %>
+                            </label>
+                            <input type="text" name="answer" id="answer" value="<%= element.answer %>" hidden>
+                            <input type="text" name="questionId" id="<%= i %>" value="<%= i %>" hidden>
+                            <button type="submit" class="sub-btn" name='questionID' value="<%= i %>">Submit</button>
+                        </form>
+                        <div class="explaination hidden" id="explaination<%= i %>">
+                            <p style="text-decoration: underline;">explaination:</p>
+                            <p>
+                                <%= element.tip %>
+                            </p>
+                        </div>
                     </div>
+                    <% }); %>
+            </div>
+            <div class="btns-container">
+                <button class="btn-prev">← Previous</button>
+                <button class="btn-next">Next →</button>
+            </div>
+            <% } else { %>
+                <h2 style="text-align: center;">No content for this category <br><br> ...yet</h2>
+                <div class="btns-container hidden">
+                    <button class="btn-prev">← Previous</button>
+                    <button class="btn-next">Next →</button>
                 </div>
-                <% }); %>
-                    <% } else { %>
-                        <h2 style="text-align: center;">No content for this category <br><br> ...yet</h2>
-                        <% } %>
-                            <div class="question-container hidden">
-                                <h1>Q<span class="question-num">1</span>:</h1>
-                                <p class="question"></p>
+                <% } %>
+                    <div class="question-container hidden">
+                        <h1>Q<span class="question-num">1</span>:</h1>
+                        <p class="question"></p>
 
-                                <form action="/">
-                                    <label class="radio-label"><input type="radio" name="option" value="a"> Option
-                                        1</label>
-                                    <label class="radio-label"><input type="radio" name="option" value="b"> Option
-                                        2</label>
-                                    <label class="radio-label"><input type="radio" name="option" value="c"> Option
-                                        3</label>
-                                    <label class="radio-label"><input type="radio" name="option" value="d"> Option
-                                        4</label>
-                                    <input type="text" name="answer" id="answer" value="c" hidden>
-                                    <button type="submit">Submit</button>
-                                </form>
-                                <div>
-                                    <p>explaination:</p>
-                                    <p class="explaination hidden"></p>
-                                </div>
-                            </div>
-
+                        <form action="/">
+                            <label class="radio-label"><input type="radio" name="option" value="a"> Option
+                                1</label>
+                            <label class="radio-label"><input type="radio" name="option" value="b"> Option
+                                2</label>
+                            <label class="radio-label"><input type="radio" name="option" value="c"> Option
+                                3</label>
+                            <label class="radio-label"><input type="radio" name="option" value="d"> Option
+                                4</label>
+                            <input type="text" name="answer" id="answer" value="c" hidden>
+                            <button type="submit">Submit</button>
+                        </form>
+                        <div>
+                            <p>explaination:</p>
+                            <p class="explaination hidden"></p>
+                        </div>
+                    </div>
 
     </div>
+    <script src="/scripts/slider.js"></script>
     <%- include('./partials/footer.ejs') %>

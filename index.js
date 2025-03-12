@@ -57,12 +57,21 @@ app.get('/y3/:subject', async (req, res) => {
 });
 app.get('/:user/y3/:subject', async (req, res) => {
     let { user, subject } = req.params;
-    let session = req.session.user;
-    console.log(session);
-    if (!req.session.user) return res.send('<h1 style="text-align:center;"> you are being redirected...</h1> <script>setTimeout(()=> window.history.back() ,3000)</script>');
+    // let session = req.session.user;
+    // console.log(session);
+    // if (!req.session.user) return res.send('<h1 style="text-align:center;"> you are being redirected...</h1> <script>setTimeout(()=> window.history.back() ,3000)</script>');
     const questions = (await db.query('SELECT * FROM questions WHERE category = $1', [subject])).rows
-
-    res.render('y3.ejs', { user: session.user, title: y3[subject].name, questions: questions })
+    const temp = {
+        type: 'user',
+        username: 'redx56',
+        password: '12345678',
+        subject: req.params.subject
+    }
+    res.render('y3.ejs', {
+        // user: session.user,
+        user: temp,
+        title: y3[subject].name, questions: questions
+    })
 
 });
 app.post('/verify-admin', async (req, res) => {

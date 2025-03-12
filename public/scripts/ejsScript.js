@@ -10,12 +10,7 @@ function showQuestion(id) {
     let element = document.querySelector(`.question${id}`);
     element.style.display = 'block'
 }
-rowQuestions.forEach((q) => {
-    q.addEventListener('click', (event) => {
-        let id = event.target.getAttribute('value')
-        showQuestion(id)
-    })
-})
+
 const elementRows = document.querySelector('h')
 forms.forEach((form) => {
     form.addEventListener('submit', (event) => {
