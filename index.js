@@ -45,7 +45,6 @@ app.get('/y3/:subject', async (req, res) => {
     let subj = req.params.subject;
     let result = await db.query('SELECT * FROM questions WHERE category = $1', [subj]);
     let session = req.session.user
-    console.log(session)
     if (session) {
         return res.redirect(`../${session.username}/y3/${subj}`)
     }
@@ -58,7 +57,6 @@ app.get('/y3/:subject', async (req, res) => {
 app.get('/:user/y3/:subject', async (req, res) => {
     let { user, subject } = req.params;
     let session = req.session.user;
-    console.log(session);
     if (!req.session.user) return res.send('<h1 style="text-align:center; margin-top:50vh;"> you are being redirected...</h1> <script>setTimeout(()=> window.history.back() ,1500)</script>');
     const questions = (await db.query('SELECT * FROM questions WHERE category = $1', [subject])).rows
     const temp = {
@@ -92,7 +90,6 @@ app.post('/verify-admin', async (req, res) => {
 })
 app.post('/verify-user', async (req, res) => {
     const { username, password, subject } = req.body;
-    console.log(username, password, subject)
     const rows = (await db.query('SELECT * FROM users WHERE username = $1', [username])).rows
     if (!rows.length) {
         res.render('userLogin', {
