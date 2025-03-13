@@ -219,17 +219,11 @@ footer {
     max-width: 80%;
 }
 
-.radio-label:hover {
-    background-color: #f0f0f0;
-}
+
 
 /* Style when selected */
 
-.radio-label input:checked~* {
-    background-color: #3498db;
-    color: white;
-    border-color: #2980b9;
-}
+
 
 .question {
     padding: 15px 7px;
@@ -262,6 +256,14 @@ footer {
     font-size: 1rem;
     /* border: none; */
     margin-right: auto;
+}
+
+input[type=radio]:checked+label {
+    background-color: #eee;
+}
+
+input[type=radio] {
+    display: none;
 }
 
 .logout-form {

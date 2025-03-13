@@ -77,16 +77,20 @@
                         </p>
 
                         <form action="/" class="form">
-                            <label class="radio-label" id="a<%= i %>"><input type="radio" name="option" value="a">
+                            <input type="radio" name="option" id="ia<%= i %>" value="a" required>
+                            <label class="radio-label" for="ia<%= i %>" id="a<%=i %>">
                                 <%= element.a %>
                             </label>
-                            <label class="radio-label" id="b<%= i %>"><input type="radio" name="option" value="b">
+                            <input type="radio" name="option" id="ib<%= i %>" value="b" required>
+                            <label class="radio-label" for="ib<%= i %>" id="b<%=i %>">
                                 <%= element.b %>
                             </label>
-                            <label class="radio-label" id="c<%= i %>"><input type="radio" name="option" value="c">
+                            <input type="radio" name="option" id="ic<%= i %>" value="c" required>
+                            <label class="radio-label" for="ic<%= i %>" id="c<%=i %>">
                                 <%= element.c %>
                             </label>
-                            <label class="radio-label" id="d<%= i %>"><input type="radio" name="option" value="d">
+                            <input type="radio" name="option" id="id<%= i %>" value="d" required>
+                            <label class="radio-label" for="id<%= i %>" id="d<%=i %>">
                                 <%= element.d %>
                             </label>
                             <input type="text" name="answer" id="answer" value="<%= element.answer %>" hidden>
