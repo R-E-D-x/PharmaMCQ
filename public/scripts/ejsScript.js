@@ -34,11 +34,11 @@ function resetColors(id) {
 
 }
 function correctAnswer(correct, id) {
-
     resetColors(id)
     console.log(correct + id)
     let element = document.querySelector(`#${correct + id}`)
     element.style.backgroundColor = 'green';
+    rowQuestions[id].style.backgroundColor = 'green'
 }
 function wrongAnswer(answer, correct, id) {
     resetColors(id)
@@ -46,7 +46,7 @@ function wrongAnswer(answer, correct, id) {
     let falseAnswer = document.querySelector(`#${answer + id}`)
     trueAnswer.style.backgroundColor = 'green';
     falseAnswer.style.backgroundColor = 'red';
-
+    rowQuestions[id].style.backgroundColor = 'red'
 }
 subBtns.forEach(btn => {
     btn.addEventListener('click', (event) => {
